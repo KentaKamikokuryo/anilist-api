@@ -1,0 +1,61 @@
+query ($season: MediaSeason, $seasonYear: Int, $sort: [MediaSort], $page: Int, $perPage: Int) {
+  # シーズン別アニメクエリ
+  # 特定のシーズンのアニメを取得します
+  Page(page: $page, perPage: $perPage) {
+    pageInfo {
+      total
+      currentPage
+      lastPage
+      hasNextPage
+      perPage
+    }
+    media(
+      season: $season
+      seasonYear: $seasonYear
+      sort: $sort
+      type: ANIME
+    ) {
+      id
+      title {
+        romaji
+        english
+        native
+      }
+      format
+      episodes
+      duration
+      status
+      genres
+      averageScore
+      popularity
+      studios(isMain: true) {
+        nodes {
+          name
+        }
+      }
+      source
+      coverImage {
+        medium
+      }
+      # 放送情報
+      airingSchedule(notYetAired: true, perPage: 1) {
+        nodes {
+          episode
+          airingAt
+          timeUntilAiring
+        }
+      }
+      # 視聴者数と評価
+      stats {
+        scoreDistribution {
+          score
+          amount
+        }
+        statusDistribution {
+          status
+          amount
+        }
+      }
+    }
+  }
+}

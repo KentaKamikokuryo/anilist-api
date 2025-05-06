@@ -1,0 +1,68 @@
+query ($id: Int, $search: String) {
+  # キャラクター情報クエリ
+  # IDまたは名前で検索できます
+  Character(id: $id, search: $search) {
+    id
+    name {
+      first
+      last
+      full
+      native
+      alternative
+    }
+    image {
+      large
+      medium
+    }
+    description
+    gender
+    dateOfBirth {
+      year
+      month
+      day
+    }
+    age
+    bloodType
+    # 出演作品（上位10件）
+    media(sort: POPULARITY_DESC, perPage: 10) {
+      nodes {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        format
+        type
+        seasonYear
+        coverImage {
+          medium
+        }
+      }
+    }
+    # 声優情報
+    media(perPage: 1) {
+      edges {
+        node {
+          id
+          title {
+            romaji
+          }
+        }
+        voiceActors(language: JAPANESE) {
+          id
+          name {
+            full
+            native
+          }
+          image {
+            medium
+          }
+          language
+        }
+      }
+    }
+    # 人気度と好きなユーザー数
+    favourites
+  }
+}

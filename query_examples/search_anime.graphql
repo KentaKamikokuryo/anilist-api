@@ -1,0 +1,46 @@
+query ($search: String, $genre: String, $season: MediaSeason, $seasonYear: Int, $format: MediaFormat, $sort: [MediaSort], $page: Int, $perPage: Int) {
+  # アニメ検索クエリ
+  # 様々な条件でアニメを検索できます
+  Page(page: $page, perPage: $perPage) {
+    pageInfo {
+      total
+      currentPage
+      lastPage
+      hasNextPage
+      perPage
+    }
+    media(
+      search: $search
+      genre: $genre
+      season: $season
+      seasonYear: $seasonYear
+      format: $format
+      sort: $sort
+      type: ANIME
+    ) {
+      id
+      title {
+        romaji
+        english
+        native
+      }
+      format
+      episodes
+      duration
+      status
+      season
+      seasonYear
+      genres
+      averageScore
+      popularity
+      studios(isMain: true) {
+        nodes {
+          name
+        }
+      }
+      coverImage {
+        medium
+      }
+    }
+  }
+}

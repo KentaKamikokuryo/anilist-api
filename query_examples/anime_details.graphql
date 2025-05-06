@@ -1,0 +1,95 @@
+query ($id: Int) {
+  # アニメの詳細情報を取得
+  Media(id: $id, type: ANIME) {
+    id
+    title {
+      romaji
+      english
+      native
+    }
+    description
+    episodes
+    duration
+    status
+    startDate {
+      year
+      month
+      day
+    }
+    endDate {
+      year
+      month
+      day
+    }
+    season
+    seasonYear
+    format
+    genres
+    tags(sort: RANK_DESC) {
+      name
+      description
+      rank
+    }
+    averageScore
+    popularity
+    studios(isMain: true) {
+      nodes {
+        name
+        isAnimationStudio
+      }
+    }
+    source
+    coverImage {
+      large
+      medium
+    }
+    bannerImage
+    # キャラクター情報（上位5名）
+    characters(sort: ROLE, perPage: 5) {
+      edges {
+        node {
+          name {
+            full
+            native
+          }
+          image {
+            medium
+          }
+        }
+        role
+        voiceActors(language: JAPANESE) {
+          name {
+            full
+            native
+          }
+        }
+      }
+    }
+    # 関連アニメ
+    relations {
+      edges {
+        node {
+          id
+          title {
+            romaji
+          }
+          format
+          type
+        }
+        relationType
+      }
+    }
+    # 推奨アニメ
+    recommendations(sort: RATING_DESC, perPage: 3) {
+      nodes {
+        mediaRecommendation {
+          id
+          title {
+            romaji
+          }
+          format
+        }
+      }
+    }
+  }
+}

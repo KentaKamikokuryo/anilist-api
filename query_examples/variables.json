@@ -1,0 +1,26 @@
+{
+  "anime_details": {
+    "id": 1
+  },
+  "search_anime": {
+    "search": "進撃の巨人",
+    "genre": null,
+    "season": null,
+    "seasonYear": null,
+    "format": null,
+    "sort": ["POPULARITY_DESC"],
+    "page": 1,
+    "perPage": 10
+  },
+  "character_info": {
+    "id": null,
+    "search": "Levi"
+  },
+  "seasonal_anime": {
+    "season": "WINTER",
+    "seasonYear": 2023,
+    "sort": ["POPULARITY_DESC"],
+    "page": 1,
+    "perPage": 10
+  }
+}
