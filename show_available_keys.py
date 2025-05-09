@@ -41,8 +41,8 @@ def print_nested_keys(data, prefix="", level=0):
     
     else:
         value_str = str(data)
-        if len(value_str) > 50:
-            value_str = value_str[:47] + "..."
+        # if len(value_str) > 50:
+        #     value_str = value_str[:47] + "..."
         print(f"{indent}{prefix}: {value_str}")
 
 
